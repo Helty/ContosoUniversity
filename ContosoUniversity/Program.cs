@@ -1,4 +1,5 @@
 ﻿using ContosoUniversity.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,13 @@ builder.Services.AddDbContext<SchoolContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolContext")));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+var myMaxModelBindingCollectionSize = Convert.ToInt32(
+           builder.Configuration["MyMaxModelBindingCollectionSize"] ?? "100");
+
+builder.Services.Configure<MvcOptions>(options =>
+       options.MaxModelBindingCollectionSize = myMaxModelBindingCollectionSize);
+
 
 var app = builder.Build();
 

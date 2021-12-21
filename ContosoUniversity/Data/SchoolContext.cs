@@ -1,5 +1,6 @@
-﻿using ContosoUniversity.Models;
+﻿#nullable disable
 using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Data
 {
